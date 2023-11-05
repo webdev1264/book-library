@@ -10,10 +10,14 @@ const BookForm = () => {
   const [author, setAuthor] = useState("");
   const dispatch = useDispatch();
 
+  const createBook = (title, author, id) => {
+    return { title, author, id, isFavorite: false };
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (title && author) {
-      const book = { title, author, id: uuidv4() };
+      const book = { title, author, id: uuidv4(), isFavorite: false };
       dispatch(addBook(book));
       setTitle("");
       setAuthor("");
@@ -24,7 +28,7 @@ const BookForm = () => {
     const randomIndex = Math.floor(Math.random() * booksData.length);
     const randomBook = booksData[randomIndex];
 
-    const randomBookWithId = { ...randomBook, id: uuidv4() };
+    const randomBookWithId = { ...randomBook, id: uuidv4(), isFavorite: false };
     dispatch(addBook(randomBookWithId));
   };
 
