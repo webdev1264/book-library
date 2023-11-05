@@ -17,6 +17,11 @@ const booksReducer = (state = initialState, action) => {
           : book
       );
     }
+    case "FILTER_BOOKS": {
+      return state.filter((book) =>
+        book.title.includes(action.payload) ? book : null
+      );
+    }
     default: {
       return state;
     }
