@@ -29,7 +29,7 @@ const BookForm = () => {
     dispatch(addBook(randomBookWithId));
   };
 
-  const handleAddRandomBookViaApi = async () => {
+  const thunkFunction = async (dispatch, getState) => {
     try {
       const res = await axios.get("http://localhost:4000/random-book");
       if (res?.data?.title && res?.data?.author) {
@@ -39,6 +39,10 @@ const BookForm = () => {
     } catch (e) {
       console.log("Error fetching random book", e.message);
     }
+  };
+
+  const handleAddRandomBookViaApi = async () => {
+    dispatch(thunkFunction);
   };
 
   return (
