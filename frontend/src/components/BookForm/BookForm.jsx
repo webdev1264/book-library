@@ -4,6 +4,7 @@ import { addBook, fetchBook } from "../../redux/slices/booksSlice";
 import booksData from "../../data/book.json";
 import createBookWithId from "../../utils/createBookWithId";
 import "./BookForm.css";
+import { setError } from "../../redux/slices/errorSlice";
 
 const BookForm = () => {
   const [title, setTitle] = useState("");
@@ -29,7 +30,7 @@ const BookForm = () => {
   };
 
   const handleAddRandomBookViaApi = () => {
-    dispatch(fetchBook());
+    dispatch(fetchBook(dispatch));
   };
 
   return (
