@@ -37,6 +37,16 @@ const booksSlice = createSlice({
       });
     },
   },
+  // // Option 1
+  // extraReducers: {
+  //   [fetchBook.fulfilled]: (state, action) => {
+  //     if (action?.payload?.title && action?.payload?.author) {
+  //       const randomBookWithId = createBookWithId(action.payload, "API");
+  //       state.push(randomBookWithId);
+  //     }
+  //   },
+  // },
+  // Option 2
   extraReducers: (builder) => {
     builder.addCase(fetchBook.fulfilled, (state, action) => {
       if (action?.payload?.title && action?.payload?.author) {
