@@ -7,13 +7,14 @@ const initialState = [];
 
 export const fetchBook = createAsyncThunk(
   "book/fetchBook",
-  async (dispatch) => {
+  async (url, thunkAPI) => {
     try {
-      const res = await axios.get("http://localhost:5000/random-book");
+      const res = await axios.get(url);
       return res.data;
     } catch (e) {
       console.log(e);
-      dispatch(setError(e.message));
+      thunkAPI.dispatch(setError(e.message));
+      throw e; // to avoid calling reducer function as using try/catch syntax, the promise will be fulfilled
     }
   }
 );
